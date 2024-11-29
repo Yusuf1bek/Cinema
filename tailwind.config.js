@@ -19,10 +19,10 @@ export default {
     },
     extend: {
       backgroundImage: {
-        "hero": "url(./src/assets/images/bg-hero.png)",
-        "hero1": "url(./src/assets/images/bg-hero-1.jpg)",
-        "hero2": "url(./src/assets/images/bg-hero-2.webp)",
-        "hero3": "url(./src/assets/images/bg-hero-3.avif)"
+        "hero": "url(assets/images/bg-hero.png)",
+        "hero1": "url(assets/images/bg-hero-1.jpg)",
+        "hero2": "url(assets/images/bg-hero-2.webp)",
+        "hero3": "url(assets/images/bg-hero-3.avif)"
       },
       colors: {
         redText: "#C61F1F",
