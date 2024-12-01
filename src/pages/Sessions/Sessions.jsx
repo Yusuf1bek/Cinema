@@ -1,8 +1,11 @@
 import React from 'react'
+import PopularMovies from "../../components/PopularMovies"
 
 const Sessions = () => {
   return (
-    <div>Sessions</div>
+    <>
+      <PopularMovies/>
+    </>
   )
 }
 

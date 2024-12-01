@@ -4,9 +4,9 @@ import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react'
 const baseQuery = async (args, api, extraOptions) => {
   const { dispatch } = api
   const rawBaseQuery = fetchBaseQuery({
-    baseUrl: "https://672fb37a66e42ceaf15e7a34.mockapi.io",
+    baseUrl: import.meta.env.VITE_BASE_URL,
     prepareHeaders: (headers) => {
-      const token = localStorage.getItem("accessToken")
+      const token = import.meta.env.VITE_TOKEN // localStorage.getItem("x-auth-token")
       if (token) {
         headers.set('Authorization', `Bearer ${token}`)
       }
@@ -20,16 +20,16 @@ const baseQuery = async (args, api, extraOptions) => {
     const { status } = result.error;
     if (status === 401 || status === 403) {
       console.error('Unauthorized access - Redirecting to login...');
-    //   dispatch(logout())
+      // dispatch(logout())
     }
   }
   return result;
 };
-const baseQueryWithRetry = retry(baseQuery, { maxRetries: 1 })
+const baseQueryWithRetry = retry(baseQuery, { maxRetries: 0 })
 
 export const api = createApi({
   reducerPath: 'myApi',
   baseQuery: baseQueryWithRetry,
-  tagTypes: ["Users"], 
+  tagTypes: ["Movie", "Category"], 
   endpoints: () => ({}),
 })

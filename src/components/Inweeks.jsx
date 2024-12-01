@@ -1,64 +1,72 @@
-import React, { useState } from 'react'
-import { MdKeyboardArrowRight } from "react-icons/md";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import { Pagination, Navigation } from 'swiper/modules';
+import React from "react";
+import { Link } from "react-router-dom";
+import { FaAngleRight } from "react-icons/fa6";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+
+import "./InWeeks.css";
+import { FreeMode, Navigation } from "swiper/modules";
+import { useGetMovieQuery } from "../redux/api/movie-api";
+
 const Inweeks = () => {
-    const [swiperRef, setSwiperRef] = useState(null);
+  const { data, error, isLoading } = useGetMovieQuery({
+    type: "upcoming",
+    params: { page: 1 },
+  });
+  console.log(data);
+  
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
   return (
-    <section className='container mt-[48px] mb-[120px]'>
-        <div className='flex items-center justify-between mb-[20px]'>
-            <h2 className='font-[500] text-[20px] leading-[24px] text-white'>На неделе</h2>
-            <p className='font-[500] text-[20px] leading-[24px] text-redText flex items-center'>
-                Показать все
-                <MdKeyboardArrowRight/>
-            </p>
+    <section className="mt-[50px]">
+      <div className="container">
+        <div className="flex justify-between items-center mb-5">
+          <p className="text-[20px] font-medium text-greyText">Скоро на этой неделе</p>
+          <Link to={"/sessions"} className="flex items-center gap-1 font-medium text-redText">
+            Показать все <FaAngleRight />
+          </Link>
         </div>
         <Swiper
-        onSwiper={setSwiperRef}
-        slidesPerView={3}
-        centeredSlides={true}
-        spaceBetween={30}
-        pagination={{
-            type: 'fraction',
-        }}
-        navigation={true}
-        modules={[Pagination, Navigation]}
-        className="mySwiper"
-      >
-        <SwiperSlide>
-            <div>
-                <div className='w-[280px] h-[400px] rounded-xl bg-[#1D1D1D]'></div>
-                <h2 className='font-[500] text-[24px] leading-[27px] text-white mb-[8px] mt-[12px]'>Kung Fu Panda 4 ENGLISH</h2>
-                <p className='font-[500] text-[14px] leading-[16px] text-greyText'>Комедия, Фэнтези</p>
-            </div>
-        </SwiperSlide>
-        <SwiperSlide>
-            <div>
-                <div className='w-[280px] h-[400px] rounded-xl bg-[#1D1D1D]'></div>
-                <h2 className='font-[500] text-[24px] leading-[27px] text-white mb-[8px] mt-[12px]'>Dune 2 – EN</h2>
-                <p className='font-[500] text-[14px] leading-[16px] text-greyText'>Фантастика, Боевик</p>
-            </div>
-        </SwiperSlide>
-        <SwiperSlide>
-            <div>
-                <div className='w-[280px] h-[400px] rounded-xl bg-[#1D1D1D]'></div>
-                <h2 className='font-[500] text-[24px] leading-[27px] text-white mb-[8px] mt-[12px]'>Дюна – RU</h2>
-                <p className='font-[500] text-[14px] leading-[16px] text-greyText'>Комедия, Фэнтези</p>
-            </div>
-        </SwiperSlide>
-        <SwiperSlide>
-            <div>
-                <div className='w-[280px] h-[400px] rounded-xl bg-[#1D1D1D]'></div>
-                <h2 className='font-[500] text-[24px] leading-[27px] text-white mb-[8px] mt-[12px]'>Kung Fu Panda 4
-                RUSSIAN</h2>
-                <p className='font-[500] text-[14px] leading-[16px] text-greyText'>Комедия, Фэнтези</p>
-            </div>
-        </SwiperSlide>
-      </Swiper>
+          style={{
+            "--swiper-navigation-color": "#f00",
+            "--swiper-pagination-color": "#fff",
+          }}
+          slidesPerView={4}
+          spaceBetween={30}
+          freeMode={true}
+          navigation={true}
+          modules={[FreeMode, Navigation]}
+          className="mySwiper2 mb-[30px] max-sm:flex max-sm:flex-col"
+        >
+          {data?.results?.map((movie) => (
+            <SwiperSlide key={movie.id}>
+              <div>
+                <div className="w-[280px] h-[400px] rounded-xl bg-[#1D1D1D]">
+                  <img
+                    src={`${import.meta.env.VITE_IMAGE_URL}${movie.poster_path}`}
+                    width={300}
+                    alt={movie.title}
+                  />
+                </div>
+                <div className="flex flex-col items-start gap-2">
+                  <h3 className="font-aeonik text-[22px] font-medium text-white">
+                    {movie.title}
+                  </h3>
+                  <p className="font-aeonik text-[#4D4D4D] text-[14px] font-medium">
+                    {movie.release_date}
+                  </p>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </section>
-  )
-}
+  );
+};
 
-export default Inweeks
+export default Inweeks;

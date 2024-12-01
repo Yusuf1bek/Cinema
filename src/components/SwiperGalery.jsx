@@ -1,71 +1,72 @@
 import React, { useState } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper , SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
+import './SwiperGalery.css';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
-import heroImg1 from "../assets/images/bg-hero.png"
-import heroImg2 from "../assets/images/bg-hero-1.jpg"
-import heroImg4 from "../assets/images/bg-hero-3.avif"
-import { FaPlay } from "react-icons/fa";
+import { useGetMovieQuery } from '../redux/api/movie-api';
+import { FaStar, FaPlay  } from "react-icons/fa6";
 
-const SwiperGalery = () => {
+const Carousel = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const {data} = useGetMovieQuery({type: "popular", params: {page: 1}})    
+
   return (
     <>
+    <div className='container'>
     <Swiper
-        style={{
-          '--swiper-navigation-color': '#fff',
-          '--swiper-pagination-color': '#fff',
-        }}
-        loop={true}
-        spaceBetween={10}
-        navigation={true}
-        thumbs={{ swiper: thumbsSwiper }}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper2 w-[1300px] h-[640px] mb-[50px] container"
-      >
-        <SwiperSlide>
-          <div className='text-white bg-hero relative h-full w-full bg-no-repeat bg-cover bg-center rounde'>
-              <div className='shadow-2xl absolute top-[450px] left-[490px] '>
-                <h2 className='font-[500] text-[42px] text-center mb-[20px] leading-[40px]'>Kung Fu Panda 4</h2>
-                <p className='font-[400] text-[18px] text-center leading-[16px] mb-[16px]'>2024 • Комедия • 1ч 34м • EN • 6+</p>
-                <button className='w-[300px] py-[10px] bg-whiteText text-redText flex items-center gap-[10px] justify-center rounded-xl'>
-                    <FaPlay/>
-                    Смотреть
+  style={{
+    '--swiper-navigation-color': '#f00',
+    '--swiper-pagination-color': '#fff',
+  }}
+  spaceBetween={10}
+  navigation={true}
+  thumbs={{ swiper: thumbsSwiper }}
+  modules={[FreeMode, Navigation, Thumbs]}
+  className="mySwiper2"
+>
+  {
+    data?.results
+      ?.slice(0, 5) 
+      .map((movieItem) => (
+        <SwiperSlide className="rounded-lg" key={movieItem.id}>
+          <div className="relative w-full h-full">
+            <img
+              src={`${import.meta.env.VITE_IMAGE_URL}${movieItem.backdrop_path}`}
+              width={1360}
+              height={640}
+              className="rounded-[18px]"
+              alt={movieItem.original_title}
+            />
+            <div className="w-full h-full absolute z-50 bottom-0 left-[50%] translate-x-[-50%] bg-radial-[at_100%_100%] text-white gra flex">
+              <div className="absolute bottom-6 left-[50%] translate-x-[-50%] flex flex-col items-center gap-4 max-sm:gap-2">
+                <h2 className="font-[500] text-[40px] leading-[40px] max-sm:text-[20px]">
+                  {movieItem.original_title}
+                </h2>
+                <div className="flex items-center gap-[20px] ">
+                  <div className="flex items-center gap-[8px]">
+                    <FaStar className="text-yellow-500" />
+                    <p>{movieItem.vote_average}</p>
+                  </div>
+                  <p>{movieItem.release_date}</p>
+                  <p className="uppercase">{movieItem.original_language}</p>
+                </div>
+                <button className="flex items-center justify-center bg-white px-[130px] py-3 rounded-lg text-redText gap-3 font-semibold max-sm:w-[20px]">
+                  <FaPlay />
+                  Смотреть
                 </button>
               </div>
+            </div>
           </div>
         </SwiperSlide>
-        <SwiperSlide>
-            <div className='text-white bg-hero1 h-full w-full bg-no-repeat bg-cover bg-center rounde'>
-              <div className='shadow-2xl absolute top-[450px] left-[490px] '>
-                <h2 className='font-[500] text-[42px] text-center mb-[20px] leading-[40px]'>Мстители</h2>
-                <p className='font-[400] text-[18px] text-center leading-[16px] mb-[16px]'>2019 • Фантастика • 2ч 12м • EN • 16+</p>
-                <button className='w-[300px] py-[10px] bg-whiteText text-redText flex items-center gap-[10px] justify-center rounded-xl'>
-                    <FaPlay/>
-                    Смотреть
-                </button>
-              </div>
-            </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className='text-white bg-hero3 h-full w-full bg-no-repeat bg-cover bg-center rounde'>
-              <div className='shadow-2xl absolute top-[450px] left-[490px] '>
-                <h2 className='font-[500] text-[42px] text-center mb-[20px] leading-[40px]'>Бетмен</h2>
-                <p className='font-[400] text-[18px] text-center leading-[16px] mb-[16px]'>2022 • Криминал • 2ч 56м • EN • 16+</p>
-                <button className='w-[300px] py-[10px] bg-whiteText text-redText flex items-center gap-[10px] justify-center rounded-xl'>
-                    <FaPlay/>
-                    Смотреть
-                </button>
-              </div>
-            </div>
-        </SwiperSlide>
-      </Swiper>
+      ))
+  }
+</Swiper>
+
       <Swiper
         onSwiper={setThumbsSwiper}
-        loop={true}
         spaceBetween={10}
         slidesPerView={4}
         freeMode={true}
@@ -73,18 +74,16 @@ const SwiperGalery = () => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <img src={heroImg1} width={108} height={64}/>
+        {data?.results?.slice(0, 5).map((posterMovie) =>(
+        <SwiperSlide className='rounded-lg' key={posterMovie.id}>
+          <img src={`${import.meta.env.VITE_IMAGE_URL}${posterMovie.backdrop_path}`} width={108} height={64} className='rounded-xl'/>
         </SwiperSlide>
-        <SwiperSlide>
-          <img src={heroImg2} width={108} height={64}/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={heroImg4} width={108} height={64}/>
-        </SwiperSlide>
+        ))
+        }
       </Swiper>
+    </div>
     </>
   )
 }
 
-export default SwiperGalery
+export default Carousel

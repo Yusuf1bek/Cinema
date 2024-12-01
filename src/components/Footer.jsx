@@ -14,7 +14,7 @@ import { TiSocialFacebookCircular } from "react-icons/ti";
 const Footer = () => {
   return (
     <footer className='container bg-[#111111] mb-[20px] rounded-xl'>
-        <ul className='p-[30px] flex items-center justify-around'>
+        <ul className='p-[30px] flex items-center justify-around max-sm:flex-wrap max-sm:gap-[20px]'>
           <li>
               <Link>
                 <img src={LogoIcon} alt="Logo Icon" width={55} height={36} className='mb-[48px]'/>

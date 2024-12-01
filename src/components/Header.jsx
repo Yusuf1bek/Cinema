@@ -1,38 +1,36 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import LogoIcon from "../assets/images/logo-icon.svg"
-import HeaderIcon1 from "../assets/images/header-icon-1.svg"
-import HeaderIcon2 from "../assets/images/header-icon-2.svg"
-import HeaderIcon3 from "../assets/images/header-icon-3.svg"
-import HeaderIcon4 from "../assets/images/header-icon-4.svg"
 import Ru from "../assets/images/RU.svg"
-
-
+import { FiTablet } from "react-icons/fi";
+import { RiTv2Line } from "react-icons/ri";
+import { IoTicketSharp } from "react-icons/io5";
+import { IoSearch } from "react-icons/io5";
 const Header = () => {
   return (
-    <header className='container p-[22px] flex items-center justify-between mb-[16px]'>
+    <header className='container p-[22px] flex items-center justify-between mb-[16px] max-sm:flex-col max-sm:items-start '>
       <Link to={"/"}>
-        <img src={LogoIcon} alt="Logo Img" width={112} height={36} />
+        <img className='max-sm:inline-block' src={LogoIcon} alt="Logo Img" width={112} height={36} />
       </Link>
-      <ul className='flex items-center gap-[30px]'>
+      <ul className='flex items-center gap-[30px] ml-[120px] max-sm:mt-[-45px] max-sm:mb-[20px]'>
         <NavLink to={"/"} className='flex flex-col gap-2 text-greyText active-link'>
-          <img src={HeaderIcon1} alt="Header-Icon" width={24} height={24} className='ml-[10px] active-link' />
+          <RiTv2Line className='text-[24px]  ml-[10px]'/>
           <span>Афиша</span>
         </NavLink>
         <NavLink to={"/sessions"} className='flex flex-col gap-2 text-greyText active-link'>
-          <img src={HeaderIcon2} alt="Header-Icon" width={24} height={24} className='ml-[10px] active-link' />
+          <FiTablet className='text-[24px]  ml-[10px]'/>
           <span>Сеансы</span>
         </NavLink>
         <NavLink to={"/tickets"} className='flex flex-col gap-2 text-greyText active-link'>
-          <img src={HeaderIcon3} alt="Header-Icon" width={24} height={24} className='ml-[10px] active-link' />
+          <IoTicketSharp className='text-[24px]  ml-[10px]'/>
           <span>Билеты</span>
         </NavLink>
         <NavLink to={"/categories"} className='flex flex-col gap-2 text-greyText active-link'>
-          <img src={HeaderIcon4} alt="Header-Icon" width={24} height={24} className='ml-[10px] active-link' />
+          <IoSearch className='text-[24px]  ml-[10px]'/>
           <span>Поиск</span>
         </NavLink>
       </ul>
-      <div className='flex items-center gap-[20px]'>
+      <div className='flex items-center gap-[20px] max-sm:ml-[70px]'>
       <div className="relative inline-block">
         <select className="appearance-none bg-black text-white rounded-md py-2 pl-10 pr-8 cursor-pointer border border-gray-600">
           <option value="ru">RU </option>
