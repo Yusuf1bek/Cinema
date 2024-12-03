@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa6";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -11,6 +11,7 @@ import { FreeMode, Navigation } from "swiper/modules";
 import { useGetMovieQuery } from "../redux/api/movie-api";
 
 const Inweeks = () => {
+  const navigate = useNavigate()
   const { data, error, isLoading } = useGetMovieQuery({
     type: "upcoming",
     params: { page: 1 },
@@ -47,9 +48,11 @@ const Inweeks = () => {
               <div>
                 <div className="w-[280px] h-[400px] rounded-xl bg-[#1D1D1D]">
                   <img
+                    onClick={()=> navigate(`/movie/${movie.id}`)}
                     src={`${import.meta.env.VITE_IMAGE_URL}${movie.poster_path}`}
                     width={300}
                     alt={movie.title}
+                    className="cursor-pointer"
                   />
                 </div>
                 <div className="flex flex-col items-start gap-2">

@@ -1,8 +1,11 @@
 import React from 'react'
+import Ganre from "../../components/Ganre"
 
 const Tickets = () => {
   return (
-    <div>Tickets</div>
+    <>
+      <Ganre/>
+    </>
   )
 }
 

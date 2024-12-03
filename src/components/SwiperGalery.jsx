@@ -8,8 +8,10 @@ import './SwiperGalery.css';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { useGetMovieQuery } from '../redux/api/movie-api';
 import { FaStar, FaPlay  } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
 
 const Carousel = () => {
+    const navigate = useNavigate()
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const {data} = useGetMovieQuery({type: "popular", params: {page: 1}})    
 
@@ -28,9 +30,7 @@ const Carousel = () => {
   className="mySwiper2"
 >
   {
-    data?.results
-      ?.slice(0, 5) 
-      .map((movieItem) => (
+    data?.results?.slice(0, 5) .map((movieItem) => (
         <SwiperSlide className="rounded-lg" key={movieItem.id}>
           <div className="relative w-full h-full">
             <img
@@ -53,7 +53,9 @@ const Carousel = () => {
                   <p>{movieItem.release_date}</p>
                   <p className="uppercase">{movieItem.original_language}</p>
                 </div>
-                <button className="flex items-center justify-center bg-white px-[130px] py-3 rounded-lg text-redText gap-3 font-semibold max-sm:w-[20px]">
+                <button 
+                onClick={()=> navigate(`/movie/${movie.id}`)}
+                className="flex items-center justify-center bg-white px-[130px] py-3 rounded-lg text-redText gap-3 font-semibold max-sm:w-[20px]">
                   <FaPlay />
                   Смотреть
                 </button>

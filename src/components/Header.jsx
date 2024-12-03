@@ -4,8 +4,8 @@ import LogoIcon from "../assets/images/logo-icon.svg"
 import Ru from "../assets/images/RU.svg"
 import { FiTablet } from "react-icons/fi";
 import { RiTv2Line } from "react-icons/ri";
-import { IoTicketSharp } from "react-icons/io5";
 import { IoSearch } from "react-icons/io5";
+import { RiFileListLine } from "react-icons/ri";
 const Header = () => {
   return (
     <header className='container p-[22px] flex items-center justify-between mb-[16px] max-sm:flex-col max-sm:items-start '>
@@ -13,20 +13,20 @@ const Header = () => {
         <img className='max-sm:inline-block' src={LogoIcon} alt="Logo Img" width={112} height={36} />
       </Link>
       <ul className='flex items-center gap-[30px] ml-[120px] max-sm:mt-[-45px] max-sm:mb-[20px]'>
-        <NavLink to={"/"} className='flex flex-col gap-2 text-greyText active-link'>
-          <RiTv2Line className='text-[24px]  ml-[10px]'/>
+        <NavLink to={"/"} className='flex items-center flex-col gap-2 text-greyText active-link'>
+          <RiTv2Line className='text-[24px] '/>
           <span>Афиша</span>
         </NavLink>
-        <NavLink to={"/sessions"} className='flex flex-col gap-2 text-greyText active-link'>
-          <FiTablet className='text-[24px]  ml-[10px]'/>
+        <NavLink to={"/sessions"} className='flex items-center flex-col gap-2 text-greyText active-link'>
+          <FiTablet className='text-[24px] '/>
           <span>Сеансы</span>
         </NavLink>
-        <NavLink to={"/tickets"} className='flex flex-col gap-2 text-greyText active-link'>
-          <IoTicketSharp className='text-[24px]  ml-[10px]'/>
-          <span>Билеты</span>
+        <NavLink to={"/tickets"} className='flex items-center flex-col gap-2 text-greyText active-link'>
+          <RiFileListLine className='text-[24px] '/>
+          <span>Жанры</span>
         </NavLink>
-        <NavLink to={"/categories"} className='flex flex-col gap-2 text-greyText active-link'>
-          <IoSearch className='text-[24px]  ml-[10px]'/>
+        <NavLink to={"/categories"} className='flex items-center flex-col gap-2 text-greyText active-link'>
+          <IoSearch className='text-[24px] '/>
           <span>Поиск</span>
         </NavLink>
       </ul>
