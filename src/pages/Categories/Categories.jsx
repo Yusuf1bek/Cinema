@@ -1,8 +1,11 @@
 import React from 'react'
+import Search from '../../components/Search'
 
 const Categories = () => {
   return (
-    <div>Categories</div>
+    <>
+      <Search/>
+    </>
   )
 }
 

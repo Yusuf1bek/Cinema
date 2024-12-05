@@ -6,3 +6,6 @@
     align-items: center;
     margin-bottom: 50px;
 }
+.ganre::-webkit-scrollbar{
+    width: 0;
+}

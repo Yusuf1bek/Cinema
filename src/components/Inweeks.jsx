@@ -11,16 +11,11 @@ import { FreeMode, Navigation } from "swiper/modules";
 import { useGetMovieQuery } from "../redux/api/movie-api";
 
 const Inweeks = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { data, error, isLoading } = useGetMovieQuery({
     type: "upcoming",
     params: { page: 1 },
   });
-  console.log(data);
-  
-
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <section className="mt-[50px]">
@@ -37,7 +32,7 @@ const Inweeks = () => {
             "--swiper-pagination-color": "#fff",
           }}
           slidesPerView={4}
-          spaceBetween={30}
+          spaceBetween={10} 
           freeMode={true}
           navigation={true}
           modules={[FreeMode, Navigation]}
@@ -48,7 +43,7 @@ const Inweeks = () => {
               <div>
                 <div className="w-[280px] h-[400px] rounded-xl bg-[#1D1D1D]">
                   <img
-                    onClick={()=> navigate(`/movie/${movie.id}`)}
+                    onClick={() => navigate(`/movie/${movie.id}`)}
                     src={`${import.meta.env.VITE_IMAGE_URL}${movie.poster_path}`}
                     width={300}
                     alt={movie.title}

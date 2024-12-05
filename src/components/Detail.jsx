@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useGetDetailQuery } from '../redux/api/movie-api';
 import { useParams } from 'react-router-dom';
 import {TICKET_LISTS} from "../static"
@@ -7,6 +7,9 @@ import { FaStar } from "react-icons/fa6"
 import detail1 from "../assets/images/detail1.png"
 import detail2 from "../assets/images/detail.png"
 const Detail = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
   const { id } = useParams();
   const { data } = useGetDetailQuery(id);
   const [showTickets, setShowTickets] = useState(false); 
@@ -15,6 +18,7 @@ const Detail = () => {
   return (
     <>
       <div className="container my-5">
+            
         <div className="flex justify-center gap-0 mb-4">
           <button
             onClick={() => setShowTickets(false)}
@@ -33,7 +37,6 @@ const Detail = () => {
             Билеты
           </button>
         </div>
-            
         {showTickets ? (
           <div className="text-white">
             <h2 className="text-4xl mb-4">Cinematica</h2>
