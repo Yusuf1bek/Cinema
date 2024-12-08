@@ -1,0 +1,50 @@
+{
+    "l": "en",
+    "header":{
+        "afisha": "Poster",
+        "sessions": "Sessions",
+        "genre": "Genre",
+        "search": "Search",
+        "login": "Log In"
+    },
+    "soon": "Movies in this week",
+    "show": "Show all",
+    "footer":{
+        "about": "About us",
+        "public": "Public offer",
+        "add": "Advertisement",
+        "rule": "F.A.Q",
+        "contacts": "Contacts",
+        "categories": "Categories",
+        "movie": "Films",
+        "theatre": "Theatre",
+        "conserts": "Concerts",
+        "sport": "Sport",
+        "contact us": "Contact with us",
+        "social": "Social media"
+    },
+    "session":{
+        "popular": "Popular",
+        "top rated": "Top rated films",
+        "upcoming": "Soon",
+        "now playing": "Now watching"
+    },
+    "geners": "Ganres",
+    "search":{
+        "placeholder": "What movie would you search to watch",
+        "button": "Search",
+        "nomovie": "Search the movie"
+    },
+    "detail":{
+        "abou film": "About films",
+        "tickets": "Tickets",
+        "details": "Detail",
+        "playing": "Playing",
+        "date": "premiere",
+        "country": "Production",
+        "ganre": "Ganare",
+        "reales": "Director",
+        "age": "Age rating",
+        "desc": "Plot"
+    }
+}

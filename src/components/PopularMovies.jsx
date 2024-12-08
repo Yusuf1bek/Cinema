@@ -4,12 +4,13 @@ import Pagination from '@mui/material/Pagination';
 import { MOVIE_LISTS } from "../static";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const PopularMovies = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-
+    const {t} = useTranslation()
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const [page, setPage] = useState(+searchParams.get("count") || 1);
@@ -56,19 +57,30 @@ const PopularMovies = () => {
     return (
         <div className="container mb-[20px]">
             <div className="flex gap-5 justify-center">
-                {MOVIE_LISTS?.map(item => (
                     <button
-                        onClick={() => handleChangeType(item.path)}
-                        key={item.id}
-                        className="mb-[20px] text-white bg-redText rounded-2xl p-[5px]"
-                    >
-                        {item.title}
+                        onClick={() => handleChangeType("popular")}
+                        className="mb-[20px] text-white bg-redText rounded-2xl p-[5px]">
+                            {t("session.popular")}
                     </button>
-                ))}
+                    <button
+                        onClick={() => handleChangeType("top_rated")}
+                        className="mb-[20px] text-white bg-redText rounded-2xl p-[5px]">
+                            {t("session.top rated")}
+                    </button>
+                    <button
+                        onClick={() => handleChangeType("upcoming")}
+                        className="mb-[20px] text-white bg-redText rounded-2xl p-[5px]">
+                            {t("session.upcoming")}
+                    </button>
+                    <button
+                        onClick={() => handleChangeType("now_playing")}
+                        className="mb-[20px] text-white bg-redText rounded-2xl p-[5px]">
+                            {t("session.now playing")}
+                    </button>
             </div>
             <div className="flex items-center justify-center flex-wrap gap-[8px]">
                 {data?.results?.map(movie => (
-                    <div key={movie.id}>
+                    <div key={movie.id} className="w-[300px]">
                         <img
                             onClick={() => navigate(`/movie/${movie.id}`)}
                             src={import.meta.env.VITE_IMAGE_URL + movie.poster_path}

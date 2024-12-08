@@ -1,0 +1,50 @@
+{
+    "l": "uz",
+    "header":{
+        "afisha": "Afisha",
+        "sessions": "Seanslar",
+        "genre": "Janrlar",
+        "search": "Qidiruv",
+        "login": "Kirish"
+    },
+    "soon": "Shu haftagi kinolar",
+    "show": "Hammasini korsatish",
+    "footer":{
+        "about": "Biz haqimizda",
+        "public": "Ommaviy taklif",
+        "add": "Reklama",
+        "rule": "F.A.Q",
+        "contacts": "Kontaktlar",
+        "categories": "Kategoriyalar",
+        "movie": "Kino",
+        "theatre": "Teatr",
+        "conserts": "Konsertlar",
+        "sport": "Sport",
+        "contact us": "Biz bilan bog'lanish",
+        "social": "Ijtimoiy tarmoqlar"
+    },
+    "session":{
+        "popular": "Ommabop",
+        "top rated": "Reytingda birinchi",
+        "upcoming": "Tez orada kinoda",
+        "now playing": "Hozir tomosha qilinmoqda"
+    },
+    "geners": "Janrlar",
+    "search":{
+        "placeholder": "Qanday kino qidiramiz",
+        "button": "Qidirish",
+        "nomovie": "Kino qidirish"
+    },
+    "detail":{
+        "abou film": "Film haqida",
+        "tickets": "Biletlar",
+        "details": "Film",
+        "playing": "Davomligi",
+        "date": "Premyera",
+        "country": "Ishlab chiqarish",
+        "ganre": "Janr",
+        "reales": "Direktor",
+        "age": "Yosh chegarasi",
+        "desc": "Syujet"
+    }
+}

@@ -9,8 +9,10 @@ import "swiper/css/pagination";
 import "./InWeeks.css";
 import { FreeMode, Navigation } from "swiper/modules";
 import { useGetMovieQuery } from "../redux/api/movie-api";
+import { useTranslation } from "react-i18next";
 
 const Inweeks = () => {
+  const {t} = useTranslation()
   const navigate = useNavigate();
   const { data, error, isLoading } = useGetMovieQuery({
     type: "upcoming",
@@ -21,9 +23,9 @@ const Inweeks = () => {
     <section className="mt-[50px]">
       <div className="container">
         <div className="flex justify-between items-center mb-5">
-          <p className="text-[20px] font-medium text-greyText">Скоро на этой неделе</p>
+          <p className="text-[20px] font-medium text-greyText">{t("soon")}</p>
           <Link to={"/sessions"} className="flex items-center gap-1 font-medium text-redText">
-            Показать все <FaAngleRight />
+          {t("show")} <FaAngleRight />
           </Link>
         </div>
         <Swiper

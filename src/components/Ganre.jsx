@@ -3,8 +3,10 @@ import { useGetMovieDiscoverQuery } from '../redux/api/movie-api';
 import { useGetGenreQuery } from '../redux/api/genre-api';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Pagination } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const Discover = () => {
+    const {t} = useTranslation()
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -59,7 +61,7 @@ const Discover = () => {
 
     return (
         <div className="container my-[30px]">
-            <h2 className="font-[500] text-[32px] leading-[54px] text-white">По Жанрам</h2>
+            <h2 className="font-[500] text-[32px] leading-[54px] text-white">{t("geners")}</h2>
             <div className="flex gap-5 overflow-auto p-3 ganre">
                 {genres?.genres?.map((genre) => (
                     <button

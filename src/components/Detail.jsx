@@ -6,15 +6,17 @@ import { RiVipCrown2Fill } from "react-icons/ri";
 import { FaStar } from "react-icons/fa6"
 import detail1 from "../assets/images/detail1.png"
 import detail2 from "../assets/images/detail.png"
+import { useTranslation } from 'react-i18next';
 const Detail = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
-}, []);
+  }, []);
   const { id } = useParams();
   const { data } = useGetDetailQuery(id);
   const [showTickets, setShowTickets] = useState(false); 
-    console.log(data);
-    
+  console.log(data);
+  document.title = `${data?.title}` 
+  const {t} = useTranslation()
   return (
     <>
       <div className="container my-5">
@@ -26,7 +28,7 @@ const Detail = () => {
               !showTickets ? 'bg-[#1D1D1D] text-redText' : 'bg-[#111111] text-white'
             }`}
           >
-            О фильме
+            {t("detail.abou film")}
           </button>
           <button
             onClick={() => setShowTickets(true)}
@@ -34,7 +36,7 @@ const Detail = () => {
               showTickets ? 'bg-[#1D1D1D] text-redText' : 'bg-[#111111] text-white'
             }`}
           >
-            Билеты
+            {t("detail.tickets")}
           </button>
         </div>
         {showTickets ? (
@@ -95,37 +97,37 @@ const Detail = () => {
                     <img src={detail1} alt="Detail Image" width={180} height={64} />
                     <img src={detail2} alt="Detail Image" width={180} height={64} />
                 </div>
-                <h2 className='font-[500] text-[20px] leading-[24px] text-white mb-[24px]'>Детали</h2>
+                <h2 className='font-[500] text-[20px] leading-[24px] text-white mb-[24px]'>{t("detail.details")}</h2>
                 <ul className='mb-[20px]'>
                     <li className='flex items-center justify-between mb-[16px]'>
-                        <strong className='font-[500] text-[16px] leading-[20px] text-greyText'>Продолжительность</strong>
+                        <strong className='font-[500] text-[16px] leading-[20px] text-greyText'>{t("detail.playing")}</strong>
                         <span className='font-[500] text-[16px] leading-[20px] text-greyText'>1ч 34м / 94 минут</span>
                     </li>
                     <li className='flex items-center justify-between mb-[16px]'>
-                        <strong className='font-[500] text-[16px] leading-[20px] text-greyText'>Премьера</strong>
+                        <strong className='font-[500] text-[16px] leading-[20px] text-greyText'>{t("detail.date")}</strong>
                         <span className='font-[500] text-[16px] leading-[20px] text-greyText'>{data?.release_date}</span>
                     </li>
                     <li className='flex items-center justify-between mb-[16px]'>
-                        <strong className='font-[500] text-[16px] leading-[20px] text-greyText'>Производство</strong>
+                        <strong className='font-[500] text-[16px] leading-[20px] text-greyText'>{t("detail.country")}</strong>
                         <span className='font-[500] text-[16px] leading-[20px] text-greyText'>{data?.origin_country}</span>
                     </li>
                     <li className='flex items-center justify-between mb-[16px]'>
-                        <strong className='font-[500] text-[16px] leading-[20px] text-greyText'>Жанр</strong>
+                        <strong className='font-[500] text-[16px] leading-[20px] text-greyText'>{t("detail.ganre")}</strong>
                         {data?.genres?.slice(0,1).map(item => (
                         <span className='font-[500] text-[16px] leading-[20px] text-greyText' key={item.id}>{item.name}</span>
                         ))}
                     </li>
                     <li className='flex items-center justify-between mb-[16px]'>
-                        <strong className='font-[500] text-[16px] leading-[20px] text-greyText'>Режиссер</strong>
+                        <strong className='font-[500] text-[16px] leading-[20px] text-greyText'>{t("detail.reales")}</strong>
                         <span className='font-[500] text-[16px] leading-[20px] text-greyText'>Майк Митчелл, Стефани Стайн</span>
                     </li>
                     <li className='flex items-center justify-between mb-[16px]'>
-                        <strong className='font-[500] text-[16px] leading-[20px] text-greyText'>Возрастной рейтинг</strong>
+                        <strong className='font-[500] text-[16px] leading-[20px] text-greyText'>{t("detail.age")}</strong>
                         <span className='font-[500] text-[16px] leading-[20px] text-greyText'>16+</span>
                     </li>
                 </ul>
                 <hr />
-                <h2 className='font-[500] text-[20px] leading-[24px] text-white mb-[24px] mt-[32px]'>Сюжет</h2>
+                <h2 className='font-[500] text-[20px] leading-[24px] text-white mb-[24px] mt-[32px]'>{t("detail.desc")}</h2>
                 <p className='font-[500] text-[16px] leading-[20px] text-greyText'>{data?.overview}</p>
             </div>
           </div>
